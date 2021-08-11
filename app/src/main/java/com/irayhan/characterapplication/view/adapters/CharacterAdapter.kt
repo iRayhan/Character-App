@@ -3,8 +3,10 @@ package com.irayhan.characterapplication.view.adapters
 import android.annotation.SuppressLint
 import android.content.Context
 import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.button.MaterialButton
+import com.bumptech.glide.Glide
 import com.irayhan.characterapplication.R
 import com.irayhan.characterapplication.base.BaseRecycleAdapter
 import com.irayhan.characterapplication.models.ModelCharacterItem
@@ -27,22 +29,25 @@ class CharacterAdapter(
     override fun onBindViewHolder(holder: CharacterAdapterViewHolder, position: Int) {
         val character = get(position)
 
-        holder.btnCharacter.apply {
+        holder.apply {
+
+            // img
+            Glide.with(mContext).load(character.image).into(imgCharacter)
 
             // name
-            text = character.name
+            txtName.text = character.name
 
             // click listener
-            setOnClickListener {
+            itemView.setOnClickListener {
                 listener.onClick(character)
             }
-
         }
 
     }
 
     class CharacterAdapterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val btnCharacter: MaterialButton = itemView.findViewById(R.id.btn_character)
+        val imgCharacter: ImageView = itemView.findViewById(R.id.img_character)
+        val txtName: TextView = itemView.findViewById(R.id.txt_name)
     }
 
 

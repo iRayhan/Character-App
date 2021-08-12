@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.material.card.MaterialCardView
 import com.irayhan.characterapplication.R
 import com.irayhan.characterapplication.base.BaseRecycleAdapter
 import com.irayhan.characterapplication.models.ModelCharacterItem
@@ -38,7 +39,7 @@ class CharacterAdapter(
             txtName.text = character.name
 
             // click listener
-            itemView.setOnClickListener {
+            cardRoot.setOnClickListener {
                 listener.onClick(character)
             }
         }
@@ -46,6 +47,7 @@ class CharacterAdapter(
     }
 
     class CharacterAdapterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val cardRoot: MaterialCardView = itemView.findViewById(R.id.card_root)
         val imgCharacter: ImageView = itemView.findViewById(R.id.img_character)
         val txtName: TextView = itemView.findViewById(R.id.txt_name)
     }
